@@ -6,11 +6,16 @@ import (
 )
 
 var storageT StorageRepo
-var storeT = make(map[string]string)
+
+var storeT = make(map[string]*node)
 
 func TestMain(m *testing.M) {
 
-	storageT = NewStorage(storeT)
+	// storageT = NewStorage(50)
+	storageT = &storage{
+		store: storeT,
+		dll:   NewDll(50),
+	}
 
 	os.Exit(m.Run())
 }

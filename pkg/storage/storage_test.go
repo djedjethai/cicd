@@ -1,19 +1,26 @@
 package storage
 
 import (
+	"context"
 	"testing"
 )
 
 func TestPut(t *testing.T) {
-	_ = storageT.Set("test", "put")
+	ctx := context.Background()
 
-	if storeT["test"] != "put" {
+	_ = storageT.Set(ctx, "test", "put")
+
+	_, ok := storeT["test"]
+
+	if !ok {
 		t.Error("err in store Put() failed")
 	}
 }
 
 func TestGet(t *testing.T) {
-	dt, _ := storageT.Get("test")
+	ctx := context.Background()
+
+	dt, _ := storageT.Get(ctx, "test")
 
 	if dt != "put" {
 		t.Error("err in store Get() failed")
@@ -21,9 +28,12 @@ func TestGet(t *testing.T) {
 }
 
 func TestDelete(t *testing.T) {
-	_ = storageT.Delete("test")
+	ctx := context.Background()
+	_ = storageT.Delete(ctx, "test")
 
-	if len(storeT) > 0 {
+	_, ok := storeT["test"]
+
+	if ok {
 		t.Error("err in store Delete() failed")
 	}
 }
