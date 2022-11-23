@@ -1,0 +1,33 @@
+stages:
+  - build
+  - test
+
+build website:
+  stage: build
+  image: golang:alpine
+  script:
+    - go mod tidy
+    - cd bin
+    - CGO_ENABLED=0 GOOS=linux go build -o kvs ../cmd
+  artifacts:
+    paths:
+      - ./bin
+
+    #    - docker build -t djedjethai/kvs .
+    #    - docker run djedjethai/kvs
+test artifact:
+  image: alpine
+  stage: test
+  script:
+    - test -f ./bin/kvs && echo "$FILE exists."
+
+test app:
+  image: alpine
+  stage: test
+  script:
+    - apk add curl
+    - cd ./bin
+    - ./kvs &
+    - sleep 2
+    - curl -X PUT -d 'Hello, key-value store!' -v http://localhost:8080/v1/key-a
+    - curl -X GET http://localhost:8080/v1/key-a
