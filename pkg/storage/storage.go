@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 	"errors"
-	"fmt"
+	// "fmt"
 	"sync"
 
 	"go.opentelemetry.io/otel"
