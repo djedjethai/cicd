@@ -12,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: action/checkout@v2
+      - run: cd pkg/storage && go test -v .
+      - run: cd ../..
       - run: docker build -t djedjethai/kvs .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
