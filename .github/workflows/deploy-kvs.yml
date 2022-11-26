@@ -23,4 +23,6 @@ jobs:
       - run: docker push djedjethai/kvs
       - uses: digitalocean/action-doctl@v2
         with:
-          token: 
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save kvs
+      - run: kubectl rollout restart deployment kvs01
