@@ -3,7 +3,7 @@ package storage
 import (
 	"context"
 	"errors"
-	// "fmt"
+	"fmt"
 	"sync"
 
 	"go.opentelemetry.io/otel"
@@ -35,6 +35,8 @@ func (s *storage) Set(ctx context.Context, key string, value string) error {
 	tr := otel.GetTracerProvider().Tracer("try")
 	_, sp := tr.Start(ctx, "SetStorage")
 	defer sp.End()
+
+	fmt.Println("is all good")
 
 	// create node in dll
 	newN, outN := s.dll.unshift(key, value)
