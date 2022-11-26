@@ -12,7 +12,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: action/checkout@v2
+      - uses: actions/checkout@v2
       - run: cd pkg/storage && go test -v .
       - run: cd ../..
       - run: docker build -t djedjethai/kvs .
