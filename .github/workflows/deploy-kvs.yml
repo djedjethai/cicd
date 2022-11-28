@@ -1,12 +1,12 @@
 name: deploy-kvs
 
 on:
-  pull_request
-  # push: 
-  #   branches:
-  #     - main
-  #   paths:
-  #     - "./**"
+  push: 
+    branches:
+     - main
+    paths:
+     - "./**"
+  # pull_request
 
 jobs:
   build:
