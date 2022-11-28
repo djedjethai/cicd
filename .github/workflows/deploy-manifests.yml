@@ -1,12 +1,11 @@
 name: deploy-manifests
 
 on:
-  pull_request
-  # push: 
-  #   branches:
-  #     - main
-  #   paths:
-  #     - "./**"
+  push: 
+    branches:
+     - main
+    paths:
+     - "**"
 
 jobs:
   build:
@@ -17,4 +16,4 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save kvs
-      - run: kubectl apply -f 
+      - run: cd kvs && helm install kvs01 .
