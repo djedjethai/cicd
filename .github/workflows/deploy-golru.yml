@@ -5,7 +5,7 @@ on:
     branches: 
       - master
     paths:
-      - "golru/**"
+      - 'golru/**'
 
 jobs:
   build:
