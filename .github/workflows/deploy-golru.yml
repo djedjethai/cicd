@@ -1,0 +1,16 @@
+name: deploy-golru
+
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - "golru/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd golru/pkg/storage && go test -v . 
+      
