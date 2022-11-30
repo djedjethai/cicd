@@ -1,0 +1,20 @@
+name: deploy-manifests
+
+on:
+  push:
+    branches: 
+      - master
+    paths:
+      - "kvs/**"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: cd golru && docker build -t dejdjethai/golru .
+      - run: docker login -u DOCKER_USERNAME -p DOCKER_PASSWORD
+        env:
+          DOCKER_USERNAME ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push djedjethai/golru
