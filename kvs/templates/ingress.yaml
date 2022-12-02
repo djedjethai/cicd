@@ -55,7 +55,6 @@ spec:
         path: /
         pathType: Prefix
           
-          # grrrrrrr
           # - host: jaeger.dev
           #   http:
           #     paths:
