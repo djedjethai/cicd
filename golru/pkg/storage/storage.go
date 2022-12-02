@@ -36,7 +36,7 @@ func (s *storage) Set(ctx context.Context, key string, value string) error {
 	_, sp := tr.Start(ctx, "SetStorage")
 	defer sp.End()
 
-	fmt.Println("is all uuiiuuuuuiiio")
+	fmt.Println("is all uuiuuiiio")
 
 	// create node in dll
 	newN, outN := s.dll.unshift(key, value)
