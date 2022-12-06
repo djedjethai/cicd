@@ -10,10 +10,14 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false # need to test if works
     steps:
       - uses: actions/checkout@v2
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save golru  
+      - run: doctl kubernetes cluster kubeconfig save golru
+      - run: cd kvs && helm install kvs01 .
+      - run: cd kvs && helm upgrade kvs01 .
       
