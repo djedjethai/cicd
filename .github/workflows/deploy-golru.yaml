@@ -18,4 +18,9 @@ jobs:
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - run: docker push djedjethai/kvs     
+      - run: docker push djedjethai/kvs
+      - uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - run: doctl kubernetes cluster kubeconfig save golru
+      - run: kubectl get deploy kvs01 -o yaml | kubectl replace --force -f -
