@@ -13,9 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         # - run: cd golru/pkg/storage && go test -v .
-      - run: cd golru
-      - run: ls
-      - run: docker build -t djedjethai/kvs .
+      - run: cd golru && docker build -t djedjethai/kvs .
       - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
         env:
           DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
