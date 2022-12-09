@@ -11,13 +11,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false # need to test if works
+      fail-fast: false # do not work
     steps:
       - uses: actions/checkout@v2
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save kvs
-      - run: cd kvs && helm install kvs01 .
+      # - run: cd kvs && helm install kvs01 .
       - run: cd kvs && helm upgrade kvs01 .
       
