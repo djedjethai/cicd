@@ -22,5 +22,5 @@ jobs:
       - uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-      - run: doctl kubernetes cluster kubeconfig save golru
+      - run: doctl kubernetes cluster kubeconfig save kvs
       - run: kubectl get deploy kvs01 -o yaml | kubectl replace --force -f -
