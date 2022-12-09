@@ -51,7 +51,7 @@ service:
 
 hostname:
   devName: "golru.dev"
-  prodName: "prod.dev"
+    # prodName: "prod.dev"
 
 ingress:
   enabled: true
