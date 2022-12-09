@@ -49,6 +49,10 @@ service:
   # type: NodePort
   port: 8080
 
+hostname:
+  devName: "golru.dev"
+    # prodName: "prod.dev"
+
 ingress:
   enabled: true
   className: ""
