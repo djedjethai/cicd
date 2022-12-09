@@ -18,6 +18,9 @@ jobs:
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       - run: doctl kubernetes cluster kubeconfig save kvs
+      - run: kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.6.3/cert-manager.yaml
+      - run: kubectl create -f https://github.com/jaegertracing/jaeger-operator/releases/download/v1.38.0/jaeger-operator.yaml -n observability
+      - run: kubectl get deployment jaeger-operator -n observability
       - run: cd kvs && helm install kvs01 .
       - run: cd kvs && helm upgrade kvs01 .
       
