@@ -37,7 +37,8 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-  - host: golru.dev
+    # - host: golru.dev
+  - host: {{ .Values.hostname.prodName | default .Values.hostname.devName }}
     http:
       paths:
       - backend:
