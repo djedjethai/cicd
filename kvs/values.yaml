@@ -51,7 +51,7 @@ service:
 
 hostname:
   devName: "golru.dev"
-  prodName: "production.dev"
+  prodName: "super-pas-cher.co"
 
 ingress:
   enabled: true
